@@ -1,0 +1,39 @@
+package com.yelang.project.extend.earthquake.domain;
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.yelang.framework.handler.PgGeometryTypeHandler;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+ 
+@Data
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName(value ="biz_geographic_name",autoResultMap = true)
+public class GeographicName implements Serializable{
+	private static final long serialVersionUID = -3694849578429480952L;
+	@TableId(value = "pk_id")
+	private Long pkId;
+	private String name;
+	private String pinyin;
+	private String classz;
+	private String bz;
+	private String slx;
+	public GeographicName(String name, String pinyin, String classz, String bz, String slx, String geom) {
+		super();
+		this.name = name;
+		this.pinyin = pinyin;
+		this.classz = classz;
+		this.bz = bz;
+		this.slx = slx;
+		this.geom = geom;
+	}
+	@TableField(typeHandler = PgGeometryTypeHandler.class)
+	private String geom;
+	@TableField(exist=false)
+	private String geomJson;  
+}
