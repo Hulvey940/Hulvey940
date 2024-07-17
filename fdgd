@@ -1,0 +1,13 @@
+@RequestMapping("/user")
+@RestController
+@RequiredArgsConstructor
+public class UserInfoController {
+
+    private final UserInfoService userInfoService;
+
+    @GetMapping("/test")
+    public Result<UserInfo> login() {
+        return Result.success(userInfoService.getById(1));
+    }
+    
+}
