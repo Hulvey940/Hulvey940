@@ -1,0 +1,18 @@
+import random
+ 
+proxy_list = ['http://proxy1', 'http://proxy2', 'http://proxy3']
+proxy = {'http': random.choice(proxy_list)}
+response = requests.get(url, proxies=proxy)
+import time
+ 
+def fetch(url):
+    time.sleep(2)  # 请求间隔2秒
+    response = requests.get(url)
+    return response
+import time
+from random import uniform
+ 
+def fetch(url):
+    time.sleep(uniform(1, 3))  # 随机延迟1到3秒
+    response = requests.get(url)
+    return response
