@@ -1,0 +1,43 @@
+<template>
+  <div id="app">
+    <router-view />
+  </div>
+</template>
+ 
+<script>
+// 引入CnNotify组件
+import CnNotify from "@/components/common/CnNotify/index.vue"
+export default  {
+  name:  'App',
+  components: {
+    CnNotify, // 注册组件
+  },
+  mounted() {
+    this.watchUpdate()
+  },
+  methods: {
+      watchUpdate() {
+        window.addEventListener("onmessageUpdate", (res) => {
+          console.log("🚀 ~ file: App.vue:20 ~ window.addEventListener ~ res:", res)
+          let msg = res.detail.msg,
+          version = res.detail.version
+          this.$notify({
+            title: "版本更新提示",
+            duration: 0,
+            position: "bottom-right",
+            dangerouslyUseHTMLString: true,
+            message: this.$createElement("CnNotify", {
+              // 使用自定义组件
+              ref: "CnNotify",
+              props: {
+                msg: msg,
+                version: version
+              },
+            }),
+            customClass:'versionNotifyStyle', //自定义类名
+          })
+        })
+      },
+  },
+}
+</script>
