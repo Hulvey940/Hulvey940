@@ -1,0 +1,16 @@
+    public static User login(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("请输入你的姓名：");
+        String name = scan.nextLine();
+
+        System.out.println("1.管理员   2.普通用户");
+        System.out.println("请输入你的身份：");
+        int identity = scan.nextInt();
+
+        if(identity == 1){
+            return new Manager(name);
+        }else{
+            return new DomesticConsumer(name);
+        }
+    }
+h
